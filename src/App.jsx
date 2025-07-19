@@ -6,7 +6,7 @@ import { Contact } from "./Pages/Contact";
 import AppLayout from "./components/layout/AppLayout";
 import { ErrorPage } from "./Pages/ErrorPage";
 
-const App = () => {
+ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -23,7 +23,11 @@ const App = () => {
         },
         {
           path: "movie",
-          element: <Movie />
+          element: <Movie />,
+          loader: async () => {
+            const { GetMoviesData } = await import("./api/GetApiData");
+            return GetMoviesData();
+          }
         },
         {
           path: "contact",
