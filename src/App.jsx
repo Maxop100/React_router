@@ -5,6 +5,8 @@ import { Movie } from "./Pages/Movie";
 import { Contact } from "./Pages/Contact";
 import AppLayout from "./components/layout/AppLayout";
 import { ErrorPage } from "./Pages/ErrorPage";
+import { MovieDetails } from "./components/UI/MovieDetails";
+import { getMoviesDetails } from "./api/GetMovieDetails";
 
  const App = () => {
   const router = createBrowserRouter([
@@ -28,6 +30,10 @@ import { ErrorPage } from "./Pages/ErrorPage";
             const { GetMoviesData } = await import("./api/GetApiData");
             return GetMoviesData();
           }
+        },{
+          path: "/movie/:movieID",
+          element: <MovieDetails />,
+          loader: getMoviesDetails
         },
         {
           path: "contact",
